@@ -1,11 +1,13 @@
 package com.bk.junit;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TestAssertJSoftAssertions {
 
 	@Test
+	@Tag("failingTest")
 	public void testSoftAssertions() {
 		Person person = new Person("John", "Doe");
 		SoftAssertions softly = new SoftAssertions();

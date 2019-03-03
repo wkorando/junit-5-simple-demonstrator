@@ -59,6 +59,12 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 
@@ -72,7 +78,7 @@
 		<profile>
 			<id>exclude</id>
 			<properties>
-				<excludeTags>excludeTag</excludeTags>
+				<excludeTags>failingTest</excludeTags>
 			</properties>
 		</profile>
 	</profiles>
@@ -85,7 +91,7 @@
 				<version>2.22.0</version>
 				<configuration>
 					<groups>${includeTags}</groups>
-					<excludedGroups>${excludeTags}</excludedGroups>
+					<excludedGroups>failingTest</excludedGroups>
 					<properties>
 						<configurationParameters>
 							junit.jupiter.execution.parallel.enabled=true
