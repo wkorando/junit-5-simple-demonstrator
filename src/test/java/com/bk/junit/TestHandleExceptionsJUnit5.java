@@ -14,10 +14,17 @@ public class TestHandleExceptionsJUnit5 {
 		assertEquals("An exception was thrown!", e.getMessage());
 	}
 	
+	
 	@Test
 	@Tag("failingTest")
-	public void testExceptionHandlingFail() {
-		assertThrows(SpecificException.class, () -> doesntThrowExceptions());
+	public void testExceptionHandlingFailWrongExceptionType() {
+		assertThrows(Exception.class, () -> doesntThrowExceptions(), "Wrong exception type thrown!");
+	}
+	
+	@Test
+	@Tag("failingTest")
+	public void testExceptionHandlingFailNoExceptionThrown() {
+		assertThrows(SpecificException.class, () -> doesntThrowExceptions(), "An exception wasn't thrown!");
 	}
 
 	public void onlyThrowsExceptions() throws SpecificException {

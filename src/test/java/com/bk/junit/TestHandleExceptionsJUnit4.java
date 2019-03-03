@@ -9,8 +9,14 @@ import org.junit.rules.ExpectedException;
 public class TestHandleExceptionsJUnit4 {
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
-
+	
 	@Test(expected = SpecificException.class)
+	public void testSpecificExceptionHandling() throws SpecificException {
+		onlyThrowsExceptions();
+	}
+	
+
+	@Test(expected = Exception.class)//Passes because Exception is super type of SpecificException
 	public void testExceptionHandling() throws SpecificException {
 		onlyThrowsExceptions();
 	}
@@ -26,8 +32,15 @@ public class TestHandleExceptionsJUnit4 {
 	}
 
 	@Test
-	public void testFindByInvalidRoomType() throws SpecificException {
+	public void testUseExpectedException() throws SpecificException {
 		expectedException.expect(SpecificException.class);
+		expectedException.expectMessage("An exception was thrown!");
+		onlyThrowsExceptions();
+	}
+	
+	@Test
+	public void testUseExpectedExceptionWithSuperType() throws SpecificException {
+		expectedException.expect(Exception.class);//Passes because Exception is super type of SpecificException
 		expectedException.expectMessage("An exception was thrown!");
 		onlyThrowsExceptions();
 	}
